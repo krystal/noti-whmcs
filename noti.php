@@ -38,14 +38,14 @@ function noti_output($vars) {
   $access_token = select_query('tblnoti', '', array('adminid' => $_SESSION['adminid']));
  
   if ( $_GET['return'] == '1' && $_SESSION['request_token'] ) {    
-    $response = curlCall("http://notiapp.com/api/v1/get_access_token",array('app' => $vars['key'], 'request_token' => $_SESSION['request_token']));
+    $response = curlCall("https://notiapp.com/api/v1/get_access_token",array('app' => $vars['key'], 'request_token' => $_SESSION['request_token']));
     $result = json_decode($response, true);    
     insert_query("tblnoti", array("adminid" => $_SESSION['adminid'], "access_token" => $result['access_token']) );
     $_SESSION['request_token'] = "";
-    curlCall("http://notiapp.com/api/v1/add",array('app' => $vars['key'], 'user' => $result['access_token'], "notification[title]" => "WHMCS is ready to go!", "notification[text]" => "You will now receive WHMCS notifications directly to your desktop", "notification[sound]" => "alert1"));
+    curlCall("https://notiapp.com/api/v1/add",array('app' => $vars['key'], 'user' => $result['access_token'], "notification[title]" => "WHMCS is ready to go!", "notification[text]" => "You will now receive WHMCS notifications directly to your desktop", "notification[sound]" => "alert1"));
     header("Location: addonmodules.php?module=noti");
   } elseif($_GET['setup'] == '1' && !mysql_num_rows($access_token)) {
-    $response = curlCall("http://notiapp.com/api/v1/request_access",array('app' => $vars['key'], 'redirect_url' => $CONFIG['SystemURL']."/".$customadminpath."/addonmodules.php?module=noti&return=1"));
+    $response = curlCall("https://notiapp.com/api/v1/request_access",array('app' => $vars['key'], 'redirect_url' => $CONFIG['SystemURL']."/".$customadminpath."/addonmodules.php?module=noti&return=1"));
     $result = json_decode($response, true);        
     if ($result['request_token'] && $result['redirect_url']) {
       $_SESSION['request_token'] = $result['request_token'];
