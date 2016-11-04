@@ -8,7 +8,7 @@ function noti_ClientAdd($vars) {
     $noti[] = $administrator['access_token'];
   }
   $noti = implode($noti, ',');
-  curlCall("http://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'New WHMCS Client', 'notification[text]' => 'A new client has signed up!', 'notification[sound]' => 'fanfare', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/clientssummary.php?userid='.$vars['userid']));
+  curlCall("https://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'New WHMCS Client', 'notification[text]' => 'A new client has signed up!', 'notification[sound]' => 'fanfare', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/clientssummary.php?userid='.$vars['userid']));
 }
 
 function noti_InvoicePaid($vars) {
@@ -19,7 +19,7 @@ function noti_InvoicePaid($vars) {
       $noti[] = $administrator['access_token'];
     }
     $noti = implode($noti, ',');
-    curlCall("http://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'An invoice has just been paid', 'notification[text]' => 'Invoice #'.$vars['invoiceid'].' has been paid.', 'notification[sound]' => 'cash', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/invoices.php?action=edit&id='.$vars['invoiceid']));
+    curlCall("https://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'An invoice has just been paid', 'notification[text]' => 'Invoice #'.$vars['invoiceid'].' has been paid.', 'notification[sound]' => 'cash', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/invoices.php?action=edit&id='.$vars['invoiceid']));
 }
 
 function noti_TicketOpen($vars) {
@@ -30,7 +30,7 @@ function noti_TicketOpen($vars) {
     $noti[] = $administrator['access_token'];
   }
   $noti = implode($noti, ',');
-  curlCall("http://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'A new ticket has arrived', 'notification[text]' => $vars['subject'].' (in '.$vars['deptname'].')', 'notification[sound]' => 'subtle1', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/supporttickets.php?action=viewticket&id='.$vars['ticketid']));
+  curlCall("https://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'A new ticket has arrived', 'notification[text]' => $vars['subject'].' (in '.$vars['deptname'].')', 'notification[sound]' => 'subtle1', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/supporttickets.php?action=viewticket&id='.$vars['ticketid']));
 }
 
 function noti_TicketUserReply($vars) {
@@ -41,7 +41,7 @@ function noti_TicketUserReply($vars) {
     $noti[] = $administrator['access_token'];
   }
   $noti = implode($noti, ',');
-  curlCall("http://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'A ticket has been updated', 'notification[text]' => $vars['subject'].' (in '.$vars['deptname'].')', 'notification[sound]' => 'subtle1', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/supporttickets.php?action=viewticket&id='.$vars['ticketid']));
+  curlCall("https://notiapp.com/api/v1/bulk",array('app' => $application_key['value'], 'users' => $noti, 'notification[title]' => 'A ticket has been updated', 'notification[text]' => $vars['subject'].' (in '.$vars['deptname'].')', 'notification[sound]' => 'subtle1', 'notification[url]' => $CONFIG['SystemURL'].'/'.$customadminpath.'/supporttickets.php?action=viewticket&id='.$vars['ticketid']));
 }
 
 
